@@ -1,0 +1,115 @@
+:root {
+  /* Colors */
+  --bg-deep: #1a1125;
+  --bg-card: #231630;
+  --bg-card-hover: #2a1a3a;
+  --lcd-green: #c4cfa1;
+  --lcd-dark: #8a9170;
+  --lcd-bg: #a8b876;
+  --lcd-screen: #b8c882;
+
+  --purple-primary: #552583;
+  --purple-light: #7b3dbf;
+  --gold-primary: #fdb927;
+  --gold-dark: #c8921e;
+
+  --text-primary: #f0e8ff;
+  --text-secondary: #9b89b8;
+  --text-muted: #6b5a88;
+
+  --stat-green: #4ade80;
+  --stat-yellow: #facc15;
+  --stat-red: #f87171;
+
+  --border-purple: #3d1a5e;
+  --border-gold: #6b4c10;
+
+  /* Fonts */
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-body: 'Fredoka', sans-serif;
+
+  /* Sizing */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+}
+
+/* ---- Scanline overlay ---- */
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* ---- Stat bar colors ---- */
+.bar-fill {
+  transition: width 0.4s ease, background-color 0.4s ease;
+}
+.bar-fill.high  { background: var(--stat-green); }
+.bar-fill.mid   { background: var(--stat-yellow); }
+.bar-fill.low   {
+  background: var(--stat-red);
+  animation: pulse-red 1s ease-in-out infinite;
+}
+
+@keyframes pulse-red {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.55; }
+}
+
+/* ---- Character animations ---- */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes sad-shake {
+  0%, 100% { transform: translateX(0); }
+  25%       { transform: translateX(-4px); }
+  75%       { transform: translateX(4px); }
+}
+
+@keyframes sleep-bob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%       { transform: translateY(-3px) rotate(-2deg); }
+}
+
+@keyframes dribble-body {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%       { transform: translateY(2px) rotate(3deg); }
+}
+
+@keyframes ball-bounce {
+  0%        { transform: translateY(0) scaleY(1); }
+  45%       { transform: translateY(32px) scaleY(0.8); }
+  50%       { transform: translateY(34px) scaleY(0.7); }
+  55%       { transform: translateY(32px) scaleY(0.8); }
+  100%      { transform: translateY(0) scaleY(1); }
+}
+
+@keyframes z-float {
+  0%   { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-30px) scale(0.5); }
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- Button press effect ---- */
+@keyframes btn-press {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(0.94); }
+  100% { transform: scale(1); }
+}
